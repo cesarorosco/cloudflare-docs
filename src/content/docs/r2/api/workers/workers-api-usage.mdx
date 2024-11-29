@@ -87,6 +87,13 @@ Within your Worker code, your bucket is now available under the `MY_BUCKET` vari
 By default `wrangler dev` runs in local development mode. In this mode, all operations performed by your local worker will operate against local storage on your machine.
 Use `wrangler dev --remote` if you want R2 operations made during development to be performed against a real R2 bucket.
 
+When you use R2 buckets in local development mode, you don't directly interact with a physical directory on your local machine. Instead, Wrangler creates a virtual R2 bucket in local storage.
+Key Points:
+- No direct Directory Mapping: There's no specific directory where you place files to be directly accessible as an R2 bucket in local mode.
+- Wrangler Handles Storage: Wrangler manages the storage and retrieval of objects in the virtual R2 bucket.
+- Interacting with the Bucket: You interact with the bucket using the R2 API within your Worker code.
+- Local Persistence: Wrangler stores the local R2 bucket data in a .wrangler/state directory.
+
 :::
 
 An R2 bucket is able to READ, LIST, WRITE, and DELETE objects. You can see an example of all operations below using the Module Worker syntax. Add the following snippet into your project's `index.js` file:
